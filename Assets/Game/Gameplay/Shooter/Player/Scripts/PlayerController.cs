@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour, IRecieveDamage
         UpdateRotation();
 
         locomotionController.UpdateIdleRunAnimation(inputController.Move.magnitude);
-        Debug.Log("Move Input: " + inputController.Move);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
