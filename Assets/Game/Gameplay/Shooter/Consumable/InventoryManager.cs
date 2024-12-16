@@ -22,8 +22,11 @@ public class InventoryManager : MonoBehaviour
 
     private PlayerController playerController;
 
+    private GameplayUI gameplayUI;
+
     private void Start()
     {
+        gameplayUI = FindObjectOfType<GameplayUI>();
         playerController = FindObjectOfType<PlayerController>();
         itemCounts["Meat"] = 0;
         itemCounts["Potion"] = 0;
@@ -32,6 +35,7 @@ public class InventoryManager : MonoBehaviour
 
         UpdateUI();
     }
+
 
 
     private void Update()
@@ -57,11 +61,13 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetKeyDown(meatKey) && CanUseItem("Meat"))
         {
             UseItem("Meat");
+            gameplayUI.StartMeatCooldownUI(cooldownTime);
         }
 
         if (Input.GetKeyDown(potionKey) && CanUseItem("Potion"))
         {
             UseItem("Potion");
+            gameplayUI.StartPotionCooldownUI(cooldownTime);
         }
     }
 

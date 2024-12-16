@@ -20,6 +20,15 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private GameObject dashCooldownImage = null;
     [SerializeField] private TMP_Text dashCooldownText = null;
 
+    [Header("Item cooldown Settings")]
+    [SerializeField] private GameObject meatReadyImage = null;
+    [SerializeField] private GameObject meatCooldownImage = null;
+    [SerializeField] private TMP_Text meatCooldownText = null;
+
+    [SerializeField] private GameObject potionReadyImage = null;
+    [SerializeField] private GameObject potionCooldownImage = null;
+    [SerializeField] private TMP_Text potionCooldownText = null;
+
     [Header("Pause Settings")]
     [SerializeField] private GameObject pausePanel = null;
     [SerializeField] private Button resumeBtn = null;
@@ -132,6 +141,64 @@ public class GameplayUI : MonoBehaviour
         if (dashCooldownText != null) dashCooldownText.gameObject.SetActive(false);
     }
     //Fin dash cooldown
+
+    //Inicio meat cooldown
+    public void StartMeatCooldownUI(float cooldownTime)
+    {
+        StartCoroutine(MeatCooldownCoroutine(cooldownTime, meatReadyImage, meatCooldownImage, meatCooldownText));
+    }
+
+    private System.Collections.IEnumerator MeatCooldownCoroutine(float cooldownTime, GameObject readyImage, GameObject cooldownImage, TMP_Text cooldownText)
+    {
+        if (readyImage != null) readyImage.SetActive(false);
+        if (cooldownImage != null) cooldownImage.SetActive(true);
+        if (cooldownText != null) cooldownText.gameObject.SetActive(true);
+
+        float remainingTime = cooldownTime;
+
+        while (remainingTime > 0)
+        {
+            if (cooldownText != null)
+                cooldownText.text = Mathf.Ceil(remainingTime).ToString();
+            remainingTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        if (readyImage != null) readyImage.SetActive(true);
+        if (cooldownImage != null) cooldownImage.SetActive(false);
+        if (cooldownText != null) cooldownText.gameObject.SetActive(false);
+    }
+
+    //Fin meat cooldown
+
+    //Inicio potion cooldown
+    public void StartPotionCooldownUI(float cooldownTime)
+    {
+        StartCoroutine(PotionCooldownCoroutine(cooldownTime, potionReadyImage, potionCooldownImage, potionCooldownText));
+    }
+
+    private System.Collections.IEnumerator PotionCooldownCoroutine(float cooldownTime, GameObject readyImage, GameObject cooldownImage, TMP_Text cooldownText)
+    {
+        if (readyImage != null) readyImage.SetActive(false);
+        if (cooldownImage != null) cooldownImage.SetActive(true);
+        if (cooldownText != null) cooldownText.gameObject.SetActive(true);
+
+        float remainingTime = cooldownTime;
+
+        while (remainingTime > 0)
+        {
+            if (cooldownText != null)
+                cooldownText.text = Mathf.Ceil(remainingTime).ToString();
+            remainingTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        if (readyImage != null) readyImage.SetActive(true);
+        if (cooldownImage != null) cooldownImage.SetActive(false);
+        if (cooldownText != null) cooldownText.gameObject.SetActive(false);
+    }
+
+    //Fin potion cooldown
 
     public void TogglePause(bool status)
     {
