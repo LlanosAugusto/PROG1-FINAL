@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: meat
   prefab: {fileID: 7666039916578124948, guid: 82d3d83f533c59f41874dad84c242422, type: 3}
-  dropChance: 100
+  dropChance: 70
   healLives: 2

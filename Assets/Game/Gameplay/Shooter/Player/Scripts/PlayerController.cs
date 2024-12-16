@@ -285,6 +285,7 @@ public class PlayerController : MonoBehaviour, IRecieveDamage
             yield break;
         }
 
+        GameManager.Instance.AudioManager.PlayAudio(dashAudioEvent, transform.position);
         Vector3 dashDirection = currentDir != Vector3.zero ? currentDir : transform.forward;
 
         float dashEndTime = Time.time + dashDuration;

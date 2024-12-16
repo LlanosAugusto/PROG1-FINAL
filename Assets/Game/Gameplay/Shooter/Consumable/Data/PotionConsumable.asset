@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: potion
   prefab: {fileID: 2930636703716953785, guid: 897e9a30300cce94ab55c9193a48e6b4, type: 3}
-  dropChance: 100
+  dropChance: 60
   increaseSpeedPorc: 50
   duration: 5
